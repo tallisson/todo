@@ -14,7 +14,7 @@
   <main class="container" style="padding-top: 50px;">
     <h1>TODO (Lista de Tarefas) - Sub III</h1>
 
-    <form>
+    <form id="form-todo">
       <div class="form-group">
         <label for="desc-todo">Descrição da Tarefa</label>
         <input type="text" class="form-control" id="desc-todo">
@@ -26,15 +26,29 @@
       </div>
 
       <div class="form-group text-right">
-        <button class="btn btn-success">
+        <button class="btn btn-success" id="btn-form" onclick="cadTodo()">
           Adicionar
         </button>
       </div>
     </form>
+
+    <table class="table" style="display: none;" id="table-todo">
+      <thead>
+        <tr>          
+          <th scope="col">Descrição</th>
+          <th scope="col">Data a ser Realizada</th>
+          <th scope="col">Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
   </main>
 
   <!-- Adicionar os scripts do JQuery e Boostrap -->
   <script type="text/javascript" src="jquery.min.js"></script>
   <script type="text/javascript" src="bootstrap.min.js"></script>
+
+  <script type="text/javascript" src="todo.js"></script>
 </body>
 </html>
