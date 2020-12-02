@@ -59,9 +59,19 @@ function addTodoATabela(todo) {
   // dentro da tabela cujo id (#, indica que está sendo usado o id) 
   // é #table-todo o elemento tbody  
   tbody = document.querySelector('#table-todo tbody');
-  tbody.innerHTML = ` <tr>    
+  tbody.innerHTML = ` <tr class="text-center">
+    <td> 
+      <select>
+        <option value="0" selected>Pendente</option> 
+        <option value="1">Finalizada</option>
+      </select>
+    </td>
     <td>${todo.descricao}</td>
     <td>${todo.data}</td>
+    <td>
+      <button class="btn btn-primary">Alterar</button>
+      <button class="btn btn-danger">Remover</button>
+    </td>
   </tr>
   `;
 }
