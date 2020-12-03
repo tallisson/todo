@@ -25,10 +25,11 @@ function cadTodo() {
   dataValue = data.value;
   dataValue = converteData(dataValue);
 
-  // Criar objeto JS com esses dados
+  // Criar objeto JS com esses dados  
   todo = {
     descricao: descValue,
-    data: dataValue
+    data: dataValue,
+    id: geraIdParaTodo()
   };
 
   // console.log(todo);
@@ -59,7 +60,8 @@ function addTodoATabela(todo) {
   // dentro da tabela cujo id (#, indica que está sendo usado o id) 
   // é #table-todo o elemento tbody  
   tbody = document.querySelector('#table-todo tbody');
-  tbody.innerHTML = ` <tr class="text-center">
+  tbody.innerHTML += ` <tr class="text-center">
+    <td>${todo.id}</td>
     <td> 
       <select>
         <option value="0" selected>Pendente</option> 
@@ -74,4 +76,19 @@ function addTodoATabela(todo) {
     </td>
   </tr>
   `;
+
+  limparInputs();
+}
+
+function limparInputs() {
+  desc = document.getElementById('desc-todo');
+  desc.value = "";
+
+  data = document.getElementById('date-todo');
+  data.value = "";
+}
+
+function geraIdParaTodo() {
+  // Obtém a data e hora atual representada em milisegundos
+  return Date.now();
 }
