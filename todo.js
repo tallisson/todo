@@ -25,12 +25,14 @@ function cadTodo() {
   dataValue = data.value;
   dataValue = converteData(dataValue);
 
-  // Criar objeto JS com esses dados  
+  // Criar objeto JS com esses dados do TODO (tarefa)
   todo = {
     descricao: descValue,
     data: dataValue,
     id: geraIdParaTodo()
   };
+
+  listaTarefas.push(todo);
 
   // console.log(todo);
   addTodoATabela(todo);
@@ -60,7 +62,7 @@ function addTodoATabela(todo) {
   // dentro da tabela cujo id (#, indica que está sendo usado o id) 
   // é #table-todo o elemento tbody  
   tbody = document.querySelector('#table-todo tbody');
-  tbody.innerHTML += ` <tr class="text-center">
+  tbody.innerHTML += ` <tr class="text-center" id="tr-${todo.id}">
     <td>${todo.id}</td>
     <td> 
       <select>
@@ -72,7 +74,9 @@ function addTodoATabela(todo) {
     <td>${todo.data}</td>
     <td>
       <button class="btn btn-primary">Alterar</button>
-      <button class="btn btn-danger">Remover</button>
+      <button class="btn btn-danger" onclick="removeTodo('tr-${todo.id}')">
+        Remover
+      </button>
     </td>
   </tr>
   `;
@@ -91,4 +95,22 @@ function limparInputs() {
 function geraIdParaTodo() {
   // Obtém a data e hora atual representada em milisegundos
   return Date.now();
+}
+
+function removeTodo(trId) {
+  ok = confirm('Deseja realmente remover registro?');
+  if(ok) {
+    tr = document.getElementById(trId);
+    tr.remove();
+  }
+
+  // Verificar o conteúdo do tbody está vazio
+  // Se estiver vazio
+  // Esconder a Tabela
+  tbody = document.querySelector('#table-todo tbody');
+  if(tbody.innerHTML.trim() == "") {
+    // Escondendo tabela
+    table = document.getElementById('table-todo');
+    table.style = 'display: none';
+  }
 }
